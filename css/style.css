@@ -41,12 +41,12 @@ body {
 
 .sidebar {
   -ms-flex: 1 0 0px;
-      flex: 1 0 0;
+  flex: 1 0 0;
 }
 
 .posts {
   -ms-flex: 2 0 0px;
-      flex: 2 0 0;
+  flex: 2 0 0;
 }
 
 .sidebar, .posts {
@@ -79,6 +79,7 @@ body {
 
 .list-horizontal li {
   display: inline-block;
+  margin-right: 10px;
 }
 
 /* Authors */
@@ -99,6 +100,10 @@ body {
   font-style: italic;
 }
 
+.post-author a {
+  text-decoration: none;
+}
+
 .post-tags {
   display: -ms-flexbox;
   display: flex;
@@ -106,5 +111,16 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+.tag-size-big {
+  font-size: 20px;
+}
+
+.tag-size-medium {
+  font-size: 16px;
+}
+
+.tag-size-small {
+  font-size: 12px;
 }
 /*# sourceMappingURL=style.css.map */
