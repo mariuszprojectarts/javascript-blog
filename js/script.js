@@ -1,6 +1,11 @@
 
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-CloudLink').innerHTML),
+}
+
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
@@ -79,7 +84,11 @@ function generateTitleLinks(customSelector = '') {
 
     /* create HTML of the link */
 
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    // by Handlebars  
+
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
+
     console.log(linkHTML);
 
     /* insert link into titleList */
@@ -132,7 +141,15 @@ function generateTags() {
 
       /* generate HTML of the link */
 
-      const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+      // by Handlebars  
+
+      const linkHTMLData = { id: tag, title: tag };
+      const linkHTML = templates.articleLink(linkHTMLData);
+
+      // const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+
+      console.log(linkHTML);
+
 
       /* add generated code to html variable */
 
@@ -249,7 +266,12 @@ function generateAuthors() {
 
     /* generate HTML of the link */
 
-    const authorLinkHTML = '<a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a>';
+    // by Handlebars 
+
+    const linkHTMLData = { id: articleAuthors, title: articleAuthors };
+    const authorLinkHTML = templates.articleLink(linkHTMLData);
+
+    //const authorLinkHTML = '<a href="#author-' + articleAuthors + '">' + 'by ' + articleAuthors + '</a>';
 
     /* add generated code to html variable */
 
@@ -383,7 +405,11 @@ function generateCloudTags() {
 
   /* create empytu HTML code */
 
-  let html = '';
+  // by Handlebars
+
+  const allTagsData = { tags: [] };
+
+  //let html = '';
 
   /* START LOOP : for each TAG */
 
@@ -406,15 +432,32 @@ function generateCloudTags() {
 
     /* generate HTML code for TAGs */
 
+    //by Handlebars
+
+    allTagsData.tags.push({
+      tag: allTags,
+      count: allTags[tag],
+      className: className,
+    });
+
+    /*
     const linkHTML = '<li><a class="' + className + '" href="#tag-' + tag + '"><span>' + tag + '(' + tagValue + ')</span></a></li>';
     html = html + linkHTML;
+    */
+
 
     /* END LOOP : for each article */
   }
 
   /* insert generated HTML to tags */
 
-  cloudTagsList.innerHTML = html
+  cloudTagsList.innerHTML = templates.tagCloudLink(allTagsData);
+
+  console.log("lista tagów " + allTagsData);
+
+
+
+  //cloudTagsList.innerHTML = html
 
 }
 

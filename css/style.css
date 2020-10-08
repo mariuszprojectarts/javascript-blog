@@ -97,11 +97,13 @@ body {
 }
 
 .post-author {
+  list-style-type: none;
   font-style: italic;
 }
 
-.post-author a {
+.post-author a:-webkit-any-link {
   text-decoration: none;
+  color: black;
 }
 
 .post-tags {

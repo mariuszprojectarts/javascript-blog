@@ -97,9 +97,11 @@ body {
 }
 
 .post-author {
+  list-style-type: none;
   font-style: italic;
-  a {
+  a:-webkit-any-link {
     text-decoration: none;
+    color: black;
   }
 }
 
